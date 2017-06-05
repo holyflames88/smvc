@@ -1,5 +1,6 @@
+
 <div class="col-md-4">
-<form class="form-signin" action="" method="post">
+<form class="form-signin" action="" method="post" id="myform">
     <h2 class="form-signin-heading">Please sign in</h2>
     <label for="inputUsername" class="sr-only">Username</label>
     <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus><br>
@@ -9,6 +10,7 @@
     <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required><br>
     <div class="checkbox">
     </div>
-    <button name="ok" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button name="ok" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br><br>
+
 </form>
 </div>

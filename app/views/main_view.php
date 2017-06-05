@@ -12,7 +12,7 @@
     Not Login
 </p>
 <?php endif; ?>
-<div id="myajax">Loading...</div>
+<div id="myajax"><img src="/css/img/load.gif"><p>Loading...</p></div>
 <div id="comments" align="left"></div>
 <script type="text/javascript">
     $(function() {
@@ -89,3 +89,26 @@
 */
     });
 </script>
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="widget-area no-padding blank">
+            <div class="status-upload">
+                <form name="new-comment" id="add-form" action="#" method="post">
+                    <textarea placeholder="What are you doing right now?" ></textarea>
+                    <ul>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+                    </ul>
+                    <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+                </form>
+            </div><!-- Status Upload  -->
+        </div><!-- Widget Area -->
+    </div>
+
+</div>
+</div>
