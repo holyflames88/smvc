@@ -12,13 +12,49 @@
     Not Login
 </p>
 <?php endif; ?>
-<div id="myajax"></div>
-<div id="comments"></div>
+<div id="myajax">Loading...</div>
+<div id="comments" align="left"></div>
 <script type="text/javascript">
     $(function() {
 
-        setInterval(myAjax, 3000);
+        setInterval(function() {
+            $.getJSON("/comments/getajax", function(json) {
 
+                var html = "";
+
+                json.forEach(function(val) {
+                    var keys = Object.keys(val);
+                    html += "<div class = 'cat'>";
+                    keys.forEach(function(key) {
+                        html += "<div class=\"panel panel-default\"><div class=\"panel-heading\"><b class=\"panel-title\"><b>" + val[key].login_id + "</b> / " + val[key].date + "</div><div class=\"panel-body\">" + val[key].text + "</div></div>";
+                       // html += val[key].text + "<br>";
+                    });
+                    html += "</div><br>";
+                    $('#myajax').hide();
+                    $('#comments').html(html);
+                    console.log(html);
+                });
+            });
+           }, 3000
+        );
+/*
+        function newAjax() {
+            $.getJSON("/comments/getajax", function(json) {
+
+                var html = "";
+
+                json.forEach(function(val) {
+                    var keys = Object.keys(val);
+                    html += "<div class = 'cat'>";
+                    keys.forEach(function(key) {
+                        html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+                    });
+                    html += "</div><br>";
+                });
+           });
+        };
+*/
+/*
         function myAjax() {
             $.ajax({
                     url: '/comments/getajax',
@@ -26,17 +62,30 @@
                    type: 'GET',
                dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-                success: function(msg) {
-                  var response = JSON.parse(msg);
-                      if(response.status == 200) {
-                          $('#comments').html("<p>" + response.id + "</p>" + "<p>" + response.text + "</p>");
-                      }
+             beforeSend: function() {
+                  $('#myajax').html('Loading...');
+             },
+                success: function(data) {
+                   $('#myajax').hide();
+
+                   var html = "";
+                   data.forEach(function(val) {
+                       var keys = Object.keys(val);
+                       html += "<div class = 'cat'>";
+                       keys.forEach(function() {
+                           html += "<strong>" + val.login_id + "</strong>: " + val.date + "<br>";
+                       });
+                       html += "</div><br>";
+                   });
+
+                   $('#comments').html(html);
+                   console.log(html);
                 },
                   error: function(msg) {
                   $('myajax').text(msg.responseText);
                 },
             });
         };
-
+*/
     });
 </script>

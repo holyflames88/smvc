@@ -11,9 +11,11 @@ class Controller_Comments extends Controller
 
  public function action_getajax()
  {
+     $rez = [];
      $this->model = new Model_Comments();
      $data[2] = $this->model->getComments();
 
-     return json_encode($data[2]);
+     $rez[] = $data[2];
+     echo json_encode($rez);
  }
 }

@@ -11,5 +11,3 @@
     </div>
     <?php endforeach; ?>
 </div>
-
-
