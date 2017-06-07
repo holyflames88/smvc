@@ -13,18 +13,27 @@
 </div>
 
 <?php if(isset($_SESSION['user'])): ?>
-<div class="row">
-    <div class="col-md-6">
-        <div class="widget-area no-padding blank">
-            <div class="status-upload">
-                <form name="new-comment" id="add-form" action="" method="post">
-                    <textarea placeholder="What are you doing right now?" ></textarea>
-                    <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
-                </form>
-            </div><!-- Status Upload  -->
-        </div><!-- Widget Area -->
+    <hr>
+    <div align="left" class="col-md-6">
+    <!-- comments form start -->
+    <div class="comments-form">
+        <h2 class="title"><b>Add your comment</b></h2>
+        <form role="form" id="comment-form" action="" method="post">
+            <div class="form-group has-feedback">
+                <label for="name4">Name</label>
+                <input type="text" class="form-control" id="name4" placeholder="" name="name4" required>
+                <i class="fa fa-user form-control-feedback"></i>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="message4">Message</label>
+                <textarea class="form-control" rows="8" id="message4" placeholder="" name="message4" required></textarea>
+                <i class="fa fa-envelope-o form-control-feedback"></i>
+            </div>
+            <input type="submit" name="addnew" value="Submit" class="btn btn-default">
+        </form>
     </div>
-</div>
+    <!-- comments form end -->
+    </div>
 <?php else: ?>
 <p>You are not login, please login for share comment!</p>
 <?php endif; ?>

@@ -37,6 +37,32 @@
             });
            }, 3000
         );
+
+         /*
+         *
+         */
+
+         $('#send').click(function(e) {
+             e.preventDefault();
+
+             var login_id = $('#name4').val();
+             var text = $('#message4').val();
+            $.ajax({
+               url: 'comments/add',
+             cache: false,
+              data: '{login_id: login_id, text: text}',
+          dataType: 'json',
+       contentType: 'application/json; charset=utf-8',
+              type: 'POST',
+           success: function(data) {
+                   $('#success').html('The response from server is: ' + data.status + ' and ' + data.statusText + ' and code: ' + data.statusCode)
+                },
+             error: function(data) {
+                   $('#err').html('Timeout, there are no response from server... ' + data.statusText);
+                },
+
+            });
+         });
 /*
         function newAjax() {
             $.getJSON("/comments/getajax", function(json) {
@@ -90,24 +116,28 @@
     });
 </script>
 
-
+<hr>
+<div id="success"></div>
+<div id="err"></div>
 <div class="row">
 
-    <div class="col-md-6">
-        <div class="widget-area no-padding blank">
-            <div class="status-upload">
-                <form name="new-comment" id="add-form" action="#" method="post">
-                    <textarea placeholder="What are you doing right now?" ></textarea>
-                    <ul>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
-                        <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
-                    </ul>
-                    <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
-                </form>
-            </div><!-- Status Upload  -->
-        </div><!-- Widget Area -->
+    <div align="left" class="col-md-6">
+        <div class="comments-form">
+            <h2 class="title"><b>Add your comment</b></h2>
+            <form role="form" id="comment-form" action="#" method="post">
+                <div class="form-group has-feedback">
+                    <label for="name4">Name</label>
+                    <input type="text" class="form-control" id="name4" placeholder="" name="name4" required>
+                    <i class="fa fa-user form-control-feedback"></i>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="message4">Message</label>
+                    <textarea class="form-control" rows="8" id="message4" placeholder="" name="message4" required></textarea>
+                    <i class="fa fa-envelope-o form-control-feedback"></i>
+                </div>
+                <button id="send" type="submit" name="addnew" class="btn btn-default">Add comment</button>
+            </form>
+        </div>
     </div>
 
 </div>
